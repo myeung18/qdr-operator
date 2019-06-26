@@ -61,7 +61,7 @@ func newReconciler(mgr manager.Manager) reconcile.Reconciler {
 	if err == nil && isOpenShift {
 		utilruntime.Must(routev1.AddToScheme(scheme))
 		utilruntime.Must(scheme.SetVersionPriority(routev1.SchemeGroupVersion))
-		log.Info("Is an openshift: ", isOpenShift)
+		log.Info("Is an openshift: ", "", isOpenShift)
 	} else if err != nil {
 		log.Error(err, "failed to detect cluster type, use the launching cluster.")
 	} else {

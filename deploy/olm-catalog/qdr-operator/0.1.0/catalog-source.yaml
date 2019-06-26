@@ -141,6 +141,24 @@ items:
             displayName: Qdr Operator
             install:
               spec:
+                clusterPermissions:
+                - rules:
+                  - apiGroups:
+                      - "apiextensions.k8s.io"
+                    resources:
+                      - customresourcedefinitions
+                    verbs:
+                      - get
+                      - list
+                  - apiGroups:
+                      - "config.openshift.io"
+                    resources:
+                      - dnses
+                    verbs:
+                      - get
+                      - list
+                      - watch
+                  serviceAccountName: qdr-operator
                 deployments:
                 - name: qdr-operator
                   spec:
@@ -168,7 +186,7 @@ items:
                                 fieldPath: metadata.name
                           - name: OPERATOR_NAME
                             value: qdr-operator
-                          image: quay.io/interconnectedcloud/qdr-operator
+                          image: quay.io/myeung/qdr-operator
                           imagePullPolicy: Always
                           name: qdr-operator
                           ports:
