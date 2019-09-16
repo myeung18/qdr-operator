@@ -16,7 +16,7 @@ items:
                 [{"apiVersion":"interconnectedcloud.github.io/v1alpha1","kind":"Interconnect","metadata":{"name":"amq-interconnect"},"spec":{"deploymentPlan":{"size":2,"role":"interior","placement":"Any"}}}]
               capabilities: Basic Install
               categories: Messaging
-              containerImage: quay.io/interconnectedcloud/qdr-operator:latest
+              containerImage: quay.io/myeung/qdr-operator:latest
             name: qdr-operator.0.1.0
             namespace: placeholder
           spec:
@@ -170,7 +170,7 @@ items:
                                 fieldPath: metadata.name
                           - name: OPERATOR_NAME
                             value: qdr-operator
-                          image: quay.io/interconnectedcloud/qdr-operator
+                          image: quay.io/myeung/qdr-operator
                           imagePullPolicy: Always
                           name: qdr-operator
                           ports:
