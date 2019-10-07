@@ -3,10 +3,23 @@ kind: ClusterServiceVersion
 metadata:
   annotations:
     alm-examples: >-
-      [{"apiVersion":"interconnectedcloud.github.io/v1alpha1","kind":"Interconnect","metadata":{"name":"amq-interconnect"},"spec":{"deploymentPlan":{"size":2,"role":"interior","placement":"Any"}}}]
+      [{
+        "apiVersion":"interconnectedcloud.github.io/v1alpha1",
+        "kind":"Interconnect",
+        "metadata":{
+          "name":"amq-interconnect"
+        },
+        "spec":{
+          "deploymentPlan":{
+            "size":2,
+            "role":"interior",
+            "placement":"Any"
+          }
+        }
+      }]
     capabilities: Basic Install
     categories: Messaging
-    containerImage: quay.io/interconnectedcloud/qdr-operator:latest
+    containerImage: quay.io/myeung/qdr-operator:latest
   name: qdr-operator.0.1.0
   namespace: placeholder
 spec:
@@ -42,16 +55,28 @@ spec:
       - kind: customresourcedefinitions
         version: v1beta1
       specDescriptors:
-      - description: The role and placement plan for the interconnect deployment
-        displayName: Deployment Placement
-        path: deploymentPlan.placement
-        x-descriptors:
-          - "urn:alm:descriptor:com.tectonic.ui:label"
-      - description: The role and placement plan for the interconnect deployment
-        displayName: Deployment Role
-        path: deploymentPlan.role
-        x-descriptors:
-          - "urn:alm:descriptor:com.tectonic.ui:label"
+        - description: The number of pods to be created initially
+          displayName: Number of pods
+          path: deploymentPlan.size
+          x-descriptors:
+          - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:deploymentPlan'
+          - 'urn:alm:descriptor:com.tectonic.ui:podCount'
+        - description: The interconnect placement plan
+          displayName: Placement
+          path: deploymentPlan.placement
+          x-descriptors:
+          - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:deploymentPlan'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:Any'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:Every'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:AntiAffinity'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:Node'
+        - description: The interconnect deployment role
+          displayName: Role
+          path: deploymentPlan.role
+          x-descriptors:
+          - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:deploymentPlan'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:interior'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:edge'
       statusDescriptors:
       - description: The current revision of the Interconnect cluster
         displayName: Revision Number
@@ -160,7 +185,7 @@ spec:
                       fieldPath: metadata.name
                 - name: OPERATOR_NAME
                   value: qdr-operator
-                image: quay.io/interconnectedcloud/qdr-operator
+                image: quay.io/myeung/qdr-operator
                 imagePullPolicy: Always
                 name: qdr-operator
                 ports:
