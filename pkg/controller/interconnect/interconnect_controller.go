@@ -56,6 +56,8 @@ func isOpenShift() bool {
 			log.Error(err, "Failed to detect cluster type")
 		}
 		openshift_detected = &isos
+
+		log.Info(" openshift info ** :  ", "-", isos, "bool : ", openshift_detected);
 	}
 	return *openshift_detected
 }
