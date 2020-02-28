@@ -1,5 +1,5 @@
 #!/bin/sh
-REGISTRY=quay.io/interconnectedcloud
+REGISTRY=quay.io/interconnectedclo
 IMAGE=qdr-operator
 TAG=1.1.0-beta2
 

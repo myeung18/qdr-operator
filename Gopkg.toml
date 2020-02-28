@@ -11,8 +11,8 @@ required = [
 ]
 
 [[constraint]]
-  name = "github.com/RHsyseng/operator-utils"
-  revision = "232650febd728455482b3c780c79a9ac0be62b50"
+  name = "github.com/myeung18/operator-utils"
+  revision = "e39f71f8ff31777088a3f5a36695e05981863a02"
 
 [[override]]
   name = "k8s.io/code-generator"
